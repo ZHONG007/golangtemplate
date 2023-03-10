@@ -35,4 +35,5 @@ jobs:
       - name: Deploy to Lambda
         run: |
           zip -r function.zip main
-          aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://function.zip
+          aws lambda update-function-code --region $AWS_REGION --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://function.zip
+
