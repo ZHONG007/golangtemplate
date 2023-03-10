@@ -26,9 +26,9 @@ jobs:
       - name: Deploy Lambda function
         uses: einaregilsson/aws-lambda-deploy@v0.3.1
         with:
-          function-name: YOUR_FUNCTION_NAME
+          function-name: golangapp
           zip-file: main.zip
-          aws-region: YOUR_AWS_REGION
+          aws-region: us-east-1
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
