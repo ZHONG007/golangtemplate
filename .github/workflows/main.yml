@@ -24,7 +24,7 @@ jobs:
           GOOS=linux go build -o main
 
       - name: Deploy Lambda function
-        uses: einaregilsson/aws-lambda-deploy@v0.3.1
+        uses:  einaregilsson/aws-lambda-deploy@v1
         with:
           function-name: golangapp
           zip-file: main.zip
