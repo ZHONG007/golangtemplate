@@ -1,13 +1,15 @@
 package main
 
+
 import (
 	"context"
 	"fmt"
+	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-func handler(ctx context.Context, payload []byte) {
-	fmt.Printf("Received mqtt message: %s\n", string(payload))
+func handler(ctx context.Context, event events.IoTEvent) {
+	fmt.Printf("Received mqtt message: %s\n", event.Payload)
 }
 
 func main() {
