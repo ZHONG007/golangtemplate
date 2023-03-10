@@ -37,8 +37,6 @@ jobs:
         zip function.zip main
         aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://function.zip
 
-        # Set the handler to the name of your executable and the name of your handler function
-        aws lambda update-function-configuration --function-name $LAMBDA_FUNCTION_NAME --handler main --runtime go1.x
 
 
 
