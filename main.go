@@ -2,16 +2,20 @@ package main
 
 
 import (
-	"context"
-	"fmt"
-	"github.com/aws/aws-lambda-go/events"
-	"github.com/aws/aws-lambda-go/lambda"
+        "fmt"
+        "context"
+        "github.com/aws/aws-lambda-go/lambda"
 )
 
-func handler(ctx context.Context, event events.IoTEvent) {
-	fmt.Printf("Received mqtt message: %s\n", event.Payload)
+type MyEvent struct {
+        Message string `json:"message"`
+}
+
+func HandleRequest(ctx context.Context, name MyEvent) (string, error) {
+        return fmt.Sprintf("Hello %s!", name.Message ), nil
 }
 
 func main() {
-	lambda.Start(handler)
+	fmt.Sprintf("Hello!" )
+        lambda.Start(HandleRequest)
 }
