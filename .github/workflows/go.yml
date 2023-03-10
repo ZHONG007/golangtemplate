@@ -12,27 +12,34 @@ env:
   LAMBDA_FUNCTION_NAME: golangapp
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: '1.20'
+    - name: Setup Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.20'
 
-      - name: Build Go application
-        run: go build -o main
+    - name: Build Go binary
+      run: go build -o main
 
-      - name: Install AWS CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y awscli
+    - name: Install AWS CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y awscli
 
-      - name: Deploy to Lambda
-        run: |
-          zip -r function.zip main
-          aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://function.zip
+    - name: Deploy to Lambda
+      run: |
+        zip function.zip main
+        aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://function.zip
+
+        # Set the handler to the name of your executable and the name of your handler function
+        aws lambda update-function-configuration --function-name $LAMBDA_FUNCTION_NAME --handler main --runtime go1.x
+
+
+
+
