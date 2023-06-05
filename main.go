@@ -19,7 +19,7 @@ type MyEvent struct {
 
 func HandleRequest(ctx context.Context, name MyEvent) (string, error) {
 	log.Printf("Received message: %s", name.Message)
-        response, err := http.Get("https://8080-cs-476722282134-default.cs-europe-west1-iuzs.cloudshell.dev/sensors")
+        response, err := http.Get("https://www.google.com")
 	if err != nil {
 		log.Fatal(err)
 	}
