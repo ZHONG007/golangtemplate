@@ -6,8 +6,6 @@ import (
         "context"
         "github.com/aws/aws-lambda-go/lambda"
 	"log"
-	"io/ioutil"
-	"net/http"
 )
 
 type MyEvent struct {
