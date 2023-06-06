@@ -11,27 +11,15 @@ import (
 )
 
 type MyEvent struct {
-        Message string `json:"message"`
+        Data string `json:"data"`
 }
 
 
 
 
 func HandleRequest(ctx context.Context, name MyEvent) (string, error) {
-	log.Printf("Received message: %s", name.Message)
-        response, err := http.Get("https://www.google.com")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	log.Println(string(body))
-        return fmt.Sprintf("Hello %s!", name.Message ), nil
+	log.Printf("Received message: %s", name.Data)
+        return fmt.Sprintf("Hello %s!", name.Data ), nil
 }
 
 func main() {
